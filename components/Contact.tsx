@@ -1,68 +1,70 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-
 export default function Contact() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      el.classList.remove("opacity-0");
-      return;
-    }
-
-    el.animate(
-      [
-        { opacity: 0, transform: "translateY(24px)" },
-        { opacity: 1, transform: "translateY(0)" },
-      ],
-      {
-        duration: 700,
-        easing: "cubic-bezier(0.16, 1, 0.3, 1)",
-        fill: "forwards",
-      }
-    );
-  }, []);
-
   return (
-    <div
-      ref={sectionRef}
-      className="opacity-0 max-w-5xl mx-auto px-6 text-center"
-    >
-      {/* HEADLINE */}
-      <h2 className="text-4xl md:text-5xl font-bold tracking-tight">
-        Let’s build something that actually converts.
-      </h2>
+    <section id="contact" className="py-24 md:py-28">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-2xl">
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+            Let’s Build the Right System
+          </h2>
 
-      <p className="mt-6 text-lg text-foreground/70 max-w-2xl mx-auto">
-        If you’re serious about growth — not vanity metrics, not experiments —
-        I’ll help you design and execute a system that delivers results.
-      </p>
+          <p className="mt-6 text-lg text-foreground/70 leading-relaxed">
+            If you’re looking for quick hacks, I’m probably not a fit.
+            If you want clarity, structure, and execution that compounds —
+            we should talk.
+          </p>
 
-      {/* CTA */}
-      <div className="mt-12 flex flex-col sm:flex-row gap-4 justify-center">
-        <a
-          href="mailto:your@email.com"
-          className="px-8 py-4 bg-accent text-white font-semibold rounded-2xl transition hover:-translate-y-0.5"
-        >
-          Start a Conversation
-        </a>
+          {/* CONTACT DETAILS */}
+          <div className="mt-10 space-y-6">
+            <ContactItem
+              label="Email"
+              value="rvnthkumar820@gmail.com"
+              href="mailto:rvnthkumar820@gmail.com"
+            />
 
-        <a
-          href="#work"
-          className="px-8 py-4 border border-foreground/20 rounded-2xl transition hover:bg-foreground/5"
-        >
-          View My Work First
-        </a>
+            <ContactItem
+              label="Phone / WhatsApp"
+              value="+91 8523048707 "
+              href="tel:+918523048707"
+            />
+
+            <ContactItem
+              label="LinkedIn"
+              value="linkedin.com/in/revanth-kumar-dm"
+              href="www.linkedin.com/in/revanth-kumar-dm"
+            />
+          </div>
+
+          <p className="mt-10 text-sm text-foreground/50">
+            I typically respond within 24 hours.
+          </p>
+        </div>
       </div>
+    </section>
+  );
+}
 
-      {/* QUALIFIER */}
-      <p className="mt-8 text-sm text-foreground/50">
-        I work with a limited number of clients to maintain quality and focus.
+function ContactItem({
+  label,
+  value,
+  href,
+}: {
+  label: string;
+  value: string;
+  href: string;
+}) {
+  return (
+    <div>
+      <p className="text-sm uppercase tracking-[0.18em] text-foreground/50">
+        {label}
       </p>
+      <a
+        href={href}
+        className="mt-1 inline-block text-lg font-medium text-foreground hover:underline"
+      >
+        {value}
+      </a>
     </div>
   );
 }
